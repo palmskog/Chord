@@ -21,17 +21,10 @@ public class Chord {
 		m_helper = new Helper();
 		
 		// get local machine's ip 
-		String local_ip = null;
-		try {
-			local_ip = InetAddress.getLocalHost().getHostAddress();
-
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		String socket = args[0];
 		
 		// create node
-		m_node = new Node (Helper.createSocketAddress(local_ip+":"+args[0]));
+		m_node = new Node(Helper.createSocketAddress(socket));
 		
 		// determine if it's creating or joining a existing ring
 		// create, contact is this node itself
@@ -40,8 +33,8 @@ public class Chord {
 		}
 		
 		// join, contact is another node
-		else if (args.length == 3) {
-			m_contact = Helper.createSocketAddress(args[1]+":"+args[2]);
+		else if (args.length == 2) {
+			m_contact = Helper.createSocketAddress(args[1]);
 			if (m_contact == null) {
 				System.out.println("Cannot find address you are trying to contact. Now exit.");
 				return;
@@ -64,7 +57,7 @@ public class Chord {
 		
 		// print join info
 		System.out.println("Joining the Chord ring.");
-		System.out.println("Local IP: "+local_ip);
+		System.out.println("Local socket: "+socket);
 		m_node.printNeighbors();
 		
 		// begin to take user input, "info" or "quit"
