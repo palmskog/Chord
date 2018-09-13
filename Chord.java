@@ -61,6 +61,7 @@ public class Chord {
 		m_node.printNeighbors();
 		
 		// begin to take user input, "info" or "quit"
+		/*
 		Scanner userinput = new Scanner(System.in);
 		while(true) {
 			System.out.println("\nType \"info\" to check this node's data or \n type \"quit\"to leave ring: ");
@@ -76,5 +77,6 @@ public class Chord {
 				m_node.printDataStructure();
 			}
 		}
+		*/
 	}
 }
